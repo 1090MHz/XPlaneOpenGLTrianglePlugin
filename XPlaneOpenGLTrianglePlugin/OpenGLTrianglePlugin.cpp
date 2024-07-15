@@ -24,7 +24,7 @@ const GLchar* fragmentShaderSource = R"glsl(
 GLuint shaderProgram;
 GLuint VAO;
 
-void compileShaders() {
+static void compileShaders() {
     // Compile vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -46,7 +46,7 @@ void compileShaders() {
     glDeleteShader(fragmentShader);
 }
 
-void setupTriangle() {
+static void setupTriangle() {
     GLfloat vertices[] = {
         -0.5f, -0.5f, 0.0f,
          0.5f, -0.5f, 0.0f,
@@ -69,11 +69,12 @@ void setupTriangle() {
     glBindVertexArray(0);
 }
 
-void drawTriangle(XPLMDrawingPhase phase, int isBefore, void* refcon) {
+static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void* refcon) {
     glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(0);
+    return 1;
 }
 
 PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {

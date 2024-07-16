@@ -21,9 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{633d5c82-9052-410f-8a38-b5081b7893d8}</ProjectGuid>
-    <RootNamespace>XPlaneOpenGLTrianglePlugin</RootNamespace>
+    <ProjectGuid>{F678FEF1-F08F-4E1A-882E-91D5D2A91514}</ProjectGuid>
+    <RootNamespace>XPlaneOpenGLTriangle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>XPlaneOpenGLTriangle</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -97,6 +98,10 @@
       <AdditionalLibraryDirectories>C:\opt\vcpkg\packages\glfw3_x64-windows\lib;C:\opt\vcpkg\packages\glew_x64-windows\lib;..\SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;glfw3dll.lib;OpenGL32.Lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\XPlaneOpenGLTriangle\win_x64\"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -117,6 +122,10 @@
       <AdditionalLibraryDirectories>C:\opt\vcpkg\packages\glfw3_x64-windows\lib;C:\opt\vcpkg\packages\glew_x64-windows\lib;..\SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;glfw3dll.lib;OpenGL32.Lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\XPlaneOpenGLTriangle\win_x64\"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -133,6 +142,10 @@
       <AdditionalLibraryDirectories>C:\opt\vcpkg\packages\glfw3_x64-windows\lib;C:\opt\vcpkg\packages\glew_x64-windows\lib;..\SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;glfw3dll.lib;OpenGL32.Lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\XPlaneOpenGLTriangle\win_x64\"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -153,6 +166,10 @@
       <AdditionalLibraryDirectories>C:\opt\vcpkg\packages\glfw3_x64-windows\lib;C:\opt\vcpkg\packages\glew_x64-windows\lib;..\SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;glfw3dll.lib;OpenGL32.Lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\XPlaneOpenGLTriangle\win_x64\"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\imgui\backends\imgui_impl_opengl3.cpp" />

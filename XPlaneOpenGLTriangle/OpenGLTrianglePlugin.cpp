@@ -12,12 +12,14 @@
 // #include "imgui_impl_xplane.h" // This is hypothetical; you'll need to adapt ImGui to work with X-Plane.
 
 // ImGui X-Plane integration initialization
-void ImGui_ImplXPlane_Init() {
+void ImGui_ImplXPlane_Init()
+{
     // Initialize ImGui for X-Plane, possibly setting up an OpenGL context or adapting ImGui to use X-Plane's context
 }
 
 // Prepare ImGui for a new frame in the X-Plane environment
-void ImGui_ImplXPlane_NewFrame() {
+void ImGui_ImplXPlane_NewFrame()
+{
     // Adapt ImGui to the current display size and DPI settings of X-Plane
     // This might involve querying X-Plane for the current window size and passing it to ImGui
     int windowWidth, windowHeight;
@@ -29,11 +31,12 @@ void ImGui_ImplXPlane_NewFrame() {
 }
 
 // Clean up ImGui resources specific to the X-Plane integration
-void ImGui_ImplXPlane_Shutdown() {
+void ImGui_ImplXPlane_Shutdown()
+{
     // Clean up any resources allocated by ImGui that are specific to X-Plane
 }
 
-const GLchar* vertexShaderSource = R"glsl(
+const GLchar *vertexShaderSource = R"glsl(
     #version 330 core
     layout (location = 0) in vec3 position;
     void main() {
@@ -41,7 +44,7 @@ const GLchar* vertexShaderSource = R"glsl(
     }
 )glsl";
 
-const GLchar* fragmentShaderSource = R"glsl(
+const GLchar *fragmentShaderSource = R"glsl(
     #version 330 core
     out vec4 color;
     void main() {
@@ -52,7 +55,8 @@ const GLchar* fragmentShaderSource = R"glsl(
 GLuint shaderProgram;
 GLuint VAO;
 
-static void compileShaders() {
+static void compileShaders()
+{
     // Compile vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -74,12 +78,12 @@ static void compileShaders() {
     glDeleteShader(fragmentShader);
 }
 
-static void setupTriangle() {
+static void setupTriangle()
+{
     GLfloat vertices[] = {
         -0.5f, -0.5f, 0.0f,
          0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
-    };
+        0.0f, 0.5f, 0.0f};
 
     GLuint VBO;
     glGenVertexArrays(1, &VAO);
@@ -90,7 +94,7 @@ static void setupTriangle() {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid *)0);
     glEnableVertexAttribArray(0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -98,7 +102,8 @@ static void setupTriangle() {
 }
 
 // Draw ImGui window in a new function
-static void drawImGuiWindow() {
+static void drawImGuiWindow()
+{
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplXPlane_NewFrame(); // This is hypothetical; adapt ImGui frame preparation as necessary.
 
@@ -121,11 +126,11 @@ static void drawImGuiWindow() {
 
     // Call EndFrame() if you're not immediately starting a new frame afterwards
     ImGui::EndFrame();
-
 }
 
 // Modify drawTriangle to include ImGui window drawing
-static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void* refcon) {
+static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void *refcon)
+{
     glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -138,7 +143,8 @@ static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void* refcon) {
 }
 
 // Initialization in XPluginStart
-PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
+PLUGIN_API int XPluginStart(char *outName, char *outSig, char *outDesc)
+{
     strcpy(outName, "OpenGL Triangle Plugin");
     strcpy(outSig, "example.opengl.triangle");
     strcpy(outDesc, "A simple plugin that draws a triangle using OpenGL.");
@@ -158,7 +164,8 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
 }
 
 // Cleanup in XPluginStop
-PLUGIN_API void XPluginStop(void) {
+PLUGIN_API void XPluginStop(void)
+{
     XPLMUnregisterDrawCallback(drawTriangle, xplm_Phase_Window, 0, NULL);
     glDeleteProgram(shaderProgram);
     glDeleteVertexArrays(1, &VAO);

@@ -97,6 +97,12 @@
       <AdditionalLibraryDirectories>C:\opt\vcpkg\packages\glew_x64-windows\lib;..\SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;OpenGL32.Lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
+xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
+
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -117,6 +123,12 @@
       <AdditionalLibraryDirectories>C:\opt\vcpkg\packages\glew_x64-windows\lib;..\SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;OpenGL32.Lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
+xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
+
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -133,6 +145,12 @@
       <AdditionalLibraryDirectories>C:\opt\vcpkg\packages\glew_x64-windows\lib;..\SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;OpenGL32.Lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
+xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
+
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -153,6 +171,12 @@
       <AdditionalLibraryDirectories>C:\opt\vcpkg\packages\glew_x64-windows\lib;..\SDK\Libraries\Win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;OpenGL32.Lib;XPLM_64.lib;XPWidgets_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
+xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
+
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="OpenGLTrianglePlugin.cpp" />

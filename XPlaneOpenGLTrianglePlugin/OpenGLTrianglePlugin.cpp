@@ -47,10 +47,11 @@ static void compileShaders() {
 }
 
 static void setupTriangle() {
+    // Note: X-Plane uses clockwise winding order
     GLfloat vertices[] = {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
+        -0.5f, -0.5f, 0.0f, // Left
+        0.0f, 0.5f, 0.0f, // Top
+        0.5f, -0.5f, 0.0f // Right
     };
 
     GLuint VBO;

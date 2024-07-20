@@ -11,34 +11,6 @@
 // #include <GLFW/glfw3.h>
 //  #include "imgui_impl_xplane.h" // This is hypothetical; you'll need to adapt ImGui to work with X-Plane.
 
-// ImGui X-Plane integration initialization
-void ImGui_ImplXPlane_Init()
-{
-    // Initialize ImGui for X-Plane, possibly setting up an OpenGL context or adapting ImGui to use X-Plane's context
-}
-
-// Prepare ImGui for a new frame in the X-Plane environment
-static void ImGui_ImplXPlane_NewFrame()
-{
-    // Adapt ImGui to the current display size and DPI settings of X-Plane
-    // This might involve querying X-Plane for the current window size and passing it to ImGui
-    int windowWidth, windowHeight;
-    XPLMGetScreenSize(&windowWidth, &windowHeight);
-    ImGui::GetIO().DisplaySize = ImVec2((float)windowWidth, (float)windowHeight);
-
-    // Start a new ImGui frame after adapting to X-Plane's environment
-    // ImGui::NewFrame();
-}
-
-// ImGui X-Plane integration shutdown
-static void ImGui_ImplXPlane_Shutdown()
-{
-    // Shutdown the ImGui OpenGL3 backend
-    ImGui_ImplOpenGL3_Shutdown();
-    // Destroy the ImGui context
-    ImGui::DestroyContext();
-}
-
 const GLchar *vertexShaderSource = R"glsl(
     #version 330 core
     layout (location = 0) in vec3 position;

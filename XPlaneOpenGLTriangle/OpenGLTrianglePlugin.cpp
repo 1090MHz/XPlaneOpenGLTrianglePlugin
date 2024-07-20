@@ -8,8 +8,8 @@
 #include "imgui.h"
 #include "imgui_impl_opengl3.h"
 
-//#include <GLFW/glfw3.h>
-// #include "imgui_impl_xplane.h" // This is hypothetical; you'll need to adapt ImGui to work with X-Plane.
+// #include <GLFW/glfw3.h>
+//  #include "imgui_impl_xplane.h" // This is hypothetical; you'll need to adapt ImGui to work with X-Plane.
 
 // ImGui X-Plane integration initialization
 void ImGui_ImplXPlane_Init()

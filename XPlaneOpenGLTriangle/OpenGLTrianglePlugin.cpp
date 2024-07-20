@@ -82,8 +82,8 @@ static void setupTriangle()
 {
     GLfloat vertices[] = {
         -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-        0.0f, 0.5f, 0.0f};
+        0.0f, 0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f};
 
     GLuint VBO;
     glGenVertexArrays(1, &VAO);

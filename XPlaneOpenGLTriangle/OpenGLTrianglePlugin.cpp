@@ -8,6 +8,11 @@
 // #include <GLFW/glfw3.h>
 //  #include "imgui_impl_xplane.h" // This is hypothetical; you'll need to adapt ImGui to work with X-Plane.
 
+// Global variables
+static XPLMMenuID g_menu_id = nullptr;
+static int g_menu_item_index = -1;
+static bool g_triangle_visible = true; // Triangle visibility state
+
 const GLchar *vertexShaderSource = R"glsl(
     #version 330 core
     layout (location = 0) in vec3 position;
@@ -76,12 +81,31 @@ static void setupTriangle()
 // Draw a triangle using OpenGL
 static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void *refcon)
 {
-    glUseProgram(shaderProgram);
-    glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
-    glBindVertexArray(0);
-
+    if (g_triangle_visible)
+    {
+        glUseProgram(shaderProgram);
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glBindVertexArray(0);
+    }
     return 1;
+}
+
+// Menu handler callback
+void menuHandler(void *inMenuRef, void *inItemRef)
+{
+    if (inItemRef == (void *)0)
+    {                                             // Assuming 0 is the ref for the toggle item
+        g_triangle_visible = !g_triangle_visible; // Toggle visibility
+    }
+}
+
+// Function to create menu
+void createMenu()
+{
+    int myPluginItem = XPLMAppendMenuItem(XPLMFindPluginsMenu(), "OpenGL Triangle", 0, 0);
+    g_menu_id = XPLMCreateMenu("OpenGL Triangle", XPLMFindPluginsMenu(), myPluginItem, menuHandler, nullptr);
+    g_menu_item_index = XPLMAppendMenuItem(g_menu_id, "Toggle Triangle", (void *)0, 1);
 }
 
 // Initialization in XPluginStart
@@ -90,6 +114,8 @@ PLUGIN_API int XPluginStart(char *outName, char *outSig, char *outDesc)
     strcpy(outName, "OpenGL Triangle Plugin");
     strcpy(outSig, "example.opengl.triangle");
     strcpy(outDesc, "A simple plugin that draws a triangle using OpenGL.");
+
+    createMenu();
 
     glewInit();
     compileShaders();

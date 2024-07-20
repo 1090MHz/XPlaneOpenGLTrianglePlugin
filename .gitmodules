@@ -1,3 +1,6 @@
 [submodule "SDK"]
 	path = SDK
 	url = https://github.com/philippMuenzel/SDK.git
+[submodule "glew"]
+	path = glew
+	url = https://github.com/nigels-com/glew.git

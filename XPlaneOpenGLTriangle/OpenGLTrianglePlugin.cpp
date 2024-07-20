@@ -136,9 +136,6 @@ static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void *refcon)
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(0);
 
-    // Draw ImGui window
-    drawImGuiWindow();
-
     return 1;
 }
 

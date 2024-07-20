@@ -1,8 +1,8 @@
 #include <XPLMDisplay.h>
 #include <imgui.h>
 #include <backends/imgui_impl_opengl3.h>
-#include "ImGuiWindows.h"
 #include "imgui_impl_xplane.h"
+#include "ImGuiDemoRenderer.h"
 
 // An opaque handle to the window we will create
 XPLMWindowID g_imgui_window;

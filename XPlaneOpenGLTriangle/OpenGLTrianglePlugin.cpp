@@ -18,14 +18,14 @@ void ImGui_ImplXPlane_Init()
 }
 
 // Prepare ImGui for a new frame in the X-Plane environment
-void ImGui_ImplXPlane_NewFrame()
+static void ImGui_ImplXPlane_NewFrame()
 {
     // Adapt ImGui to the current display size and DPI settings of X-Plane
     // This might involve querying X-Plane for the current window size and passing it to ImGui
     int windowWidth, windowHeight;
     XPLMGetScreenSize(&windowWidth, &windowHeight);
     ImGui::GetIO().DisplaySize = ImVec2((float)windowWidth, (float)windowHeight);
-    
+
     // Start a new ImGui frame after adapting to X-Plane's environment
     // ImGui::NewFrame();
 }

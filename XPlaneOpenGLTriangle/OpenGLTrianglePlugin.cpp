@@ -126,13 +126,11 @@ PLUGIN_API int XPluginStart(char *outName, char *outSig, char *outDesc)
     compileShaders();
     setupTriangle();
 
-    // Initialize ImGui
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGui_ImplOpenGL3_Init("#version 330");
-    // ImGui_ImplXPlane_Init(); // This is hypothetical; adapt ImGui initialization as necessary.
+    // ImGui Implementation for X-Plane initialization
+    ImGui_ImplXPlane_Init();
 
     XPLMRegisterDrawCallback(drawTriangle, xplm_Phase_Window, 0, NULL);
+
     return 1;
 }
 

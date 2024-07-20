@@ -5,7 +5,7 @@
 #include <GL/glew.h>
 #include <cstring>
 
-const GLchar* vertexShaderSource = R"glsl(
+const GLchar *vertexShaderSource = R"glsl(
     #version 330 core
     layout (location = 0) in vec3 position;
     void main() {
@@ -13,7 +13,7 @@ const GLchar* vertexShaderSource = R"glsl(
     }
 )glsl";
 
-const GLchar* fragmentShaderSource = R"glsl(
+const GLchar *fragmentShaderSource = R"glsl(
     #version 330 core
     out vec4 color;
     void main() {
@@ -24,7 +24,8 @@ const GLchar* fragmentShaderSource = R"glsl(
 GLuint shaderProgram;
 GLuint VAO;
 
-static void compileShaders() {
+static void compileShaders()
+{
     // Compile vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -46,12 +47,13 @@ static void compileShaders() {
     glDeleteShader(fragmentShader);
 }
 
-static void setupTriangle() {
+static void setupTriangle()
+{
     // Note: X-Plane uses clockwise winding order
     GLfloat vertices[] = {
         -0.5f, -0.5f, 0.0f, // Left
-        0.0f, 0.5f, 0.0f, // Top
-        0.5f, -0.5f, 0.0f // Right
+        0.0f, 0.5f, 0.0f,   // Top
+        0.5f, -0.5f, 0.0f   // Right
     };
 
     GLuint VBO;
@@ -63,14 +65,15 @@ static void setupTriangle() {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid *)0);
     glEnableVertexAttribArray(0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
 
-static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void* refcon) {
+static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void *refcon)
+{
     glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -78,7 +81,8 @@ static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void* refcon) {
     return 1;
 }
 
-PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
+PLUGIN_API int XPluginStart(char *outName, char *outSig, char *outDesc)
+{
     strcpy(outName, "OpenGL Triangle Plugin");
     strcpy(outSig, "example.opengl.triangle");
     strcpy(outDesc, "A simple plugin that draws a triangle using OpenGL.");
@@ -91,12 +95,13 @@ PLUGIN_API int XPluginStart(char* outName, char* outSig, char* outDesc) {
     return 1;
 }
 
-PLUGIN_API void XPluginStop(void) {
+PLUGIN_API void XPluginStop(void)
+{
     XPLMUnregisterDrawCallback(drawTriangle, xplm_Phase_Window, 0, NULL);
     glDeleteProgram(shaderProgram);
     glDeleteVertexArrays(1, &VAO);
 }
 
-PLUGIN_API void XPluginDisable(void) { }
+PLUGIN_API void XPluginDisable(void) {}
 PLUGIN_API int XPluginEnable(void) { return 1; }
-PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inParam) { }
+PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void *inParam) {}

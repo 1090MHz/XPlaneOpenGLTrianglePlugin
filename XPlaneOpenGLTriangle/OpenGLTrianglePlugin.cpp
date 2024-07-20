@@ -39,16 +39,45 @@ static void compileShaders()
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     glCompileShader(vertexShader);
 
+    // Check vertex shader compilation status
+    GLint success;
+    GLchar infoLog[512];
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        XPLMDebugString("OpenGLTrianglePlugin: ERROR compiling vertex shader:\n");
+        XPLMDebugString(infoLog);
+    }
+
     // Compile fragment shader
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
     glCompileShader(fragmentShader);
+
+    // Check fragment shader compilation status
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        XPLMDebugString("OpenGLTrianglePlugin: ERROR compiling fragment shader:\n");
+        XPLMDebugString(infoLog);
+    }
 
     // Link shaders
     shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
+
+    // Check shader program linking status
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    if (!success)
+    {
+        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        XPLMDebugString("OpenGLTrianglePlugin: ERROR linking shader program:\n");
+        XPLMDebugString(infoLog);
+    }
 
     // Clean up shaders; they're linked into our program now and no longer necessary
     glDeleteShader(vertexShader);

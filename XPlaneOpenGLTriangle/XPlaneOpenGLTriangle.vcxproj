@@ -194,7 +194,14 @@ xcopy /Y "C:\opt\vcpkg\packages\glfw3_x64-windows\bin\glfw3.dll" "C:\X-Plane 12\
     <ClCompile Include="..\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="ImGuiDemoRenderer.cpp" />
+    <ClCompile Include="imgui_impl_xplane.cpp" />
     <ClCompile Include="OpenGLTrianglePlugin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\imgui\backends\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\imgui\imgui.h" />
+    <ClInclude Include="ImGuiDemoRenderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

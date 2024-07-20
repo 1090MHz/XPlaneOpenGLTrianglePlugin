@@ -101,34 +101,7 @@ static void setupTriangle()
     glBindVertexArray(0);
 }
 
-// Draw ImGui window in a new function
-static void drawImGuiWindow()
-{
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplXPlane_NewFrame(); // This is hypothetical; adapt ImGui frame preparation as necessary.
-
-    // At the beginning of a new frame
-    ImGui::NewFrame();
-    ImGui::Begin("Triangle Control");
-    ImGui::Text("This is a simple ImGui window in an X-Plane plugin.");
-    ImGui::End();
-    // End ImGui frame
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-    // If using ImGui's docking features, this is necessary
-    //if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-    //    GLFWwindow* backup_current_context = glfwGetCurrentContext();
-    //    ImGui::UpdatePlatformWindows();
-    //    ImGui::RenderPlatformWindowsDefault();
-    //    glfwMakeContextCurrent(backup_current_context);
-    //}
-
-    // Call EndFrame() if you're not immediately starting a new frame afterwards
-    ImGui::EndFrame();
-}
-
-// Modify drawTriangle to include ImGui window drawing
+// Draw a triangle using OpenGL
 static int drawTriangle(XPLMDrawingPhase phase, int isBefore, void *refcon)
 {
     glUseProgram(shaderProgram);

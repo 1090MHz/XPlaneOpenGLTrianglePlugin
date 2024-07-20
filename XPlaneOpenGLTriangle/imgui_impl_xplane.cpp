@@ -5,7 +5,7 @@
 #include "imgui_impl_xplane.h"
 
 // An opaque handle to the window we will create
-XPLMWindowID g_window;
+XPLMWindowID g_imgui_window;
 
 // Global variable to store the window's current geometry
 WindowGeometry g_WindowGeometry;
@@ -17,7 +17,7 @@ WindowGeometry g_WindowGeometry;
 void UpdateWindowGeometry()
 {
     // Update g_WindowGeometry with the new geometry of the "Minimal Window"
-    XPLMGetWindowGeometry(g_window, &g_WindowGeometry.left, &g_WindowGeometry.top, &g_WindowGeometry.right, &g_WindowGeometry.bottom);
+    XPLMGetWindowGeometry(g_imgui_window, &g_WindowGeometry.left, &g_WindowGeometry.top, &g_WindowGeometry.right, &g_WindowGeometry.bottom);
     // Update width and height based on the obtained geometry
     g_WindowGeometry.width = g_WindowGeometry.right - g_WindowGeometry.left;
     g_WindowGeometry.height = g_WindowGeometry.top - g_WindowGeometry.bottom;
@@ -81,9 +81,9 @@ void DrawWindowCallback(XPLMWindowID inWindowID, void *inRefcon)
 }
 
 // Callbacks we will register when we create our window
-int dummy_mouse_handler(XPLMWindowID in_window_id, int x, int y, int is_down, void *in_refcon) { return 0; }
-int dummy_wheel_handler(XPLMWindowID in_window_id, int x, int y, int wheel, int clicks, void *in_refcon) { return 0; }
-void dummy_key_handler(XPLMWindowID in_window_id, char key, XPLMKeyFlags flags, char virtual_key, void *in_refcon, int losing_focus) {}
+int imgui_mouse_handler(XPLMWindowID in_window_id, int x, int y, int is_down, void *in_refcon) { return 0; }
+int imgui_wheel_handler(XPLMWindowID in_window_id, int x, int y, int wheel, int clicks, void *in_refcon) { return 0; }
+void imgui_key_handler(XPLMWindowID in_window_id, char key, XPLMKeyFlags flags, char virtual_key, void *in_refcon, int losing_focus) {}
 
 void InitializeTransparentImGuiOverlay()
 {
@@ -94,9 +94,9 @@ void InitializeTransparentImGuiOverlay()
     // Note on "dummy" handlers:
     // Even if we don't want to handle these events, we have to register a "do-nothing" callback for them
     params.handleMouseClickFunc = HandleMouseClickEvent;
-    params.handleRightClickFunc = NULL; // dummy_mouse_handler;
-    params.handleMouseWheelFunc = NULL; // dummy_wheel_handler;
-    params.handleKeyFunc = NULL;        // dummy_key_handler;
+    params.handleRightClickFunc = imgui_mouse_handler;
+    params.handleMouseWheelFunc = imgui_wheel_handler;
+    params.handleKeyFunc = imgui_key_handler;
     params.handleCursorFunc = HandleCursorEvent;
     // Set refcon to NULL or a pointer to your data structure if needed
     params.refcon = NULL;
@@ -132,7 +132,7 @@ void InitializeTransparentImGuiOverlay()
 
     // Create the window
     XPLMWindowID xplmWindowID = XPLMCreateWindowEx(&params);
-    g_window = xplmWindowID;
+    g_imgui_window = xplmWindowID;
 }
 
 // Prepare ImGui for a new frame in the X-Plane environment

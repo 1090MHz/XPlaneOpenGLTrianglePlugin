@@ -30,7 +30,7 @@ struct WindowGeometry
 // };
 
 // Global variable declarations
-extern XPLMWindowID g_window;
+extern XPLMWindowID g_imgui_window;
 extern WindowGeometry g_WindowGeometry;
 
 // Initialization and Shutdown

@@ -1,7 +1,12 @@
-#include <XPLMDisplay.h>
-#include <imgui.h>
-#include <backends/imgui_impl_opengl3.h>
 #include "imgui_impl_xplane.h"
+
+// ImGui library core
+#include <imgui.h>
+
+// OpenGL3 backend for ImGui
+#include <backends/imgui_impl_opengl3.h>
+
+// ImGui Demo Window Renderer
 #include "ImGuiDemoRenderer.h"
 
 // An opaque handle to the window we will create

@@ -5,9 +5,6 @@
 #include <GL/glew.h>
 #include <cstring>
 
-#include "imgui.h"
-#include "imgui_impl_opengl3.h"
-
 // #include <GLFW/glfw3.h>
 //  #include "imgui_impl_xplane.h" // This is hypothetical; you'll need to adapt ImGui to work with X-Plane.
 

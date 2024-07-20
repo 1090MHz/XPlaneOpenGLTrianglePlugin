@@ -87,7 +87,13 @@ PLUGIN_API int XPluginStart(char *outName, char *outSig, char *outDesc)
     strcpy(outSig, "example.opengl.triangle");
     strcpy(outDesc, "A simple plugin that draws a triangle using OpenGL.");
 
-    glewInit();
+    GLenum glewInitResult = glewInit();
+    if (glewInitResult != GLEW_OK)
+    {
+        XPLMDebugString("GLEW initialization failed: ");
+        XPLMDebugString((const char *)glewGetErrorString(glewInitResult));
+        return 0; // Or handle the error as appropriate
+    }
     compileShaders();
     setupTriangle();
 

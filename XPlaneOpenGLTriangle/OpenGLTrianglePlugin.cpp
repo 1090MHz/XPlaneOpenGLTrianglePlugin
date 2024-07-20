@@ -108,6 +108,40 @@ void createMenu()
     g_menu_item_index = XPLMAppendMenuItem(g_menu_id, "Toggle Triangle", (void *)0, 1);
 }
 
+// Callbacks for dataref
+int DataRefReadCallback(void *inRefcon)
+{
+    return g_triangle_visible ? 1 : 0;
+}
+
+void DataRefWriteCallback(void *inRefcon, int inValue)
+{
+    g_triangle_visible = (inValue != 0);
+}
+
+void RegisterTriangleVisibilityDataRef()
+{
+    XPLMRegisterDataAccessor(
+        "XPlaneOpenGLTriangle/triangle_visibility", // inDataName: The name of the data ref to create or modify.
+        xplmType_Int,                               // inDataType: The type of data provided by this data ref.
+        1,                                          // inIsWritable: 1 if this data ref can be written to, 0 if it is read-only.
+        DataRefReadCallback,                        // inReadInt: Read integer value callback
+        DataRefWriteCallback,                       // inWriteInt: Write integer value callback
+        nullptr,                                    // inReadFloat: Read float value callback
+        nullptr,                                    // inWriteFloat: Write float value callback
+        nullptr,                                    // inReadDouble: Read double value callback
+        nullptr,                                    // inWriteDouble: Write double value callback
+        nullptr,                                    // inReadIntArray: Read integer array callback
+        nullptr,                                    // inWriteIntArray: Write integer array callback
+        nullptr,                                    // inReadFloatArray: Read float array callback
+        nullptr,                                    // inWriteFloatArray: Write float array callback
+        nullptr,                                    // inReadData: Read raw data callback
+        nullptr,                                    // inWriteData: Write raw data callback
+        nullptr,                                    // inReadRefcon: Reference constant for the read callback.
+        nullptr                                     // inWriteRefcon: Reference constant for the write callback.
+    );
+}
+
 // Initialization in XPluginStart
 PLUGIN_API int XPluginStart(char *outName, char *outSig, char *outDesc)
 {
@@ -116,6 +150,7 @@ PLUGIN_API int XPluginStart(char *outName, char *outSig, char *outDesc)
     strcpy(outDesc, "A simple plugin that draws a triangle using OpenGL.");
 
     createMenu();
+    RegisterTriangleVisibilityDataRef();
 
     glewInit();
     compileShaders();

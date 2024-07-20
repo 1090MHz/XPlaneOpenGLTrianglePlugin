@@ -178,7 +178,7 @@ void EndImGuiFrame()
 int RenderImGuiFrame(XPLMDrawingPhase phase, int isBefore, void *refcon)
 {
     BeginImGuiFrame();
-    RenderImGuiContent();
+    RenderDemoWindows();
     EndImGuiFrame();
 
     return 1;

@@ -4,4 +4,4 @@
 #include "imgui.h"
 
 // Declare your function
-void RenderImGuiContent();
+void RenderDemoWindows();

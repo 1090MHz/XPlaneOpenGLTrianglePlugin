@@ -30,10 +30,13 @@ static void ImGui_ImplXPlane_NewFrame()
     // ImGui::NewFrame();
 }
 
-// Clean up ImGui resources specific to the X-Plane integration
-void ImGui_ImplXPlane_Shutdown()
+// ImGui X-Plane integration shutdown
+static void ImGui_ImplXPlane_Shutdown()
 {
-    // Clean up any resources allocated by ImGui that are specific to X-Plane
+    // Shutdown the ImGui OpenGL3 backend
+    ImGui_ImplOpenGL3_Shutdown();
+    // Destroy the ImGui context
+    ImGui::DestroyContext();
 }
 
 const GLchar *vertexShaderSource = R"glsl(
@@ -140,10 +143,8 @@ PLUGIN_API void XPluginStop(void)
     glDeleteProgram(shaderProgram);
     glDeleteVertexArrays(1, &VAO);
 
-    // Cleanup ImGui
-    ImGui_ImplOpenGL3_Shutdown();
-    // ImGui_ImplXPlane_Shutdown(); // This is hypothetical; adapt ImGui cleanup as necessary.
-    ImGui::DestroyContext();
+    // ImGui Implementation for X-Plane shutdown
+    ImGui_ImplXPlane_Shutdown();
 }
 
 PLUGIN_API void XPluginDisable(void) {}

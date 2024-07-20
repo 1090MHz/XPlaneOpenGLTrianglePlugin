@@ -1,9 +1,15 @@
-#include "XPLMDisplay.h"
-#include "XPLMGraphics.h"
-#include "XPLMUtilities.h"
-#include "XPLMDataAccess.h"
+// Standard OpenGL Extension Wrangler Library
 #include <GL/glew.h>
-#include <cstring>
+
+// X-Plane SDK headers for display and menu functionalities
+#include <XPLMDataAccess.h> // Access and manipulate data refs and create new data refs for the plugin.
+#include <XPLMDisplay.h>    // Create and manage windows, draw in X-Plane's 3D world, and create graphics.
+#include <XPLMGraphics.h>   // Draw in the X-Plane 3D world using OpenGL, and manage OpenGL state.
+#include <XPLMMenus.h>      // Manage menus in the X-Plane user interface.
+#include <XPLMUtilities.h>  // Utility functions for plugins, such as logging messages to the X-Plane log file.
+
+// ImGui integration for X-Plane, used for GUI elements
+#include "imgui_impl_xplane.h"
 
 // #include <GLFW/glfw3.h>
 //  #include "imgui_impl_xplane.h" // This is hypothetical; you'll need to adapt ImGui to work with X-Plane.

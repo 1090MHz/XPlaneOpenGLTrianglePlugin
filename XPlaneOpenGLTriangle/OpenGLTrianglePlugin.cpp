@@ -241,7 +241,7 @@ PLUGIN_API int XPluginStart(char *outName, char *outSig, char *outDesc)
     setupTriangle();
 
     // ImGui Implementation for X-Plane initialization
-    ImGui_ImplXPlane_Init();
+    ImGui::XP::Init();
 
     XPLMRegisterDrawCallback(drawTriangle, xplm_Phase_Window, 0, NULL);
 
@@ -257,7 +257,7 @@ PLUGIN_API void XPluginStop(void)
     glDeleteVertexArrays(1, &VAO);
 
     // ImGui Implementation for X-Plane shutdown
-    ImGui_ImplXPlane_Shutdown();
+    ImGui::XP::Shutdown();
 }
 
 PLUGIN_API void XPluginDisable(void) {}

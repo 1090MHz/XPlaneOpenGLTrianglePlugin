@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -22,7 +23,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{633d5c82-9052-410f-8a38-b5081b7893d8}</ProjectGuid>
-    <RootNamespace>XPlaneOpenGLTrianglePlugin</RootNamespace>
+    <RootNamespace>XPlaneOpenGLTriangle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -101,7 +102,7 @@
       <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
 xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
 
-</Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -127,7 +128,7 @@ xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 1
       <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
 xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
 
-</Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -149,7 +150,7 @@ xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 1
       <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
 xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
 
-</Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -175,7 +176,7 @@ xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 1
       <Command>xcopy /Y /I "$(TargetDir)$(TargetName).xpl" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
 xcopy /Y ""C:\opt\vcpkg\packages\glew_x64-windows\bin\glew32.dll"" "C:\X-Plane 12\Resources\plugins\$(ProjectName)\win_x64\"
 
-</Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

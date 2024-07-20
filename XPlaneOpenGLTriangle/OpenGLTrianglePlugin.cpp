@@ -146,6 +146,6 @@ PLUGIN_API void XPluginStop(void)
     ImGui::DestroyContext();
 }
 
-PLUGIN_API void XPluginDisable(void) { }
+PLUGIN_API void XPluginDisable(void) {}
 PLUGIN_API int XPluginEnable(void) { return 1; }
-PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void* inParam) { }
+PLUGIN_API void XPluginReceiveMessage(XPLMPluginID inFrom, int inMsg, void *inParam) {}
